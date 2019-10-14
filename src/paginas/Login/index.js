@@ -4,12 +4,20 @@ import { FaGithub } from 'react-icons/fa'
 
 class Login extends React.Component{
     state = {
-        
+        usuario: ''
     }
 
-    // para o comportamento padrão do formulário de recarregar a página
-    maniuplarForm = (evt) => {
-        evt.pretendVefault();
+    // para salvar o que for digitado no input do form
+    manipularInput = (evt) => {
+        this.setState({usuario: evt.target.value});
+    }
+
+    manipularForm = (evt) => {
+        // para o comportamento padrão do formulário de recarregar a página
+        evt.preventDefault();
+
+        // funciona como um redirect
+        this.props.history.push(`/seguidores/${this.state.usuario}`);
     }
 
     render() {
@@ -17,8 +25,9 @@ class Login extends React.Component{
             <div className="container">
                 <FaGithub className="logo" />
                 <h1>iFollow</h1>
-                <form>
-                    <input type='text' placeholder="Digite seu usuário do github" />
+                {/* AGREGAR O manipularFORM ao FROM */}
+                <form onSubmit={this.manipularForm}>
+                    <input onInput={this.manipularInput} type='text' placeholder="Digite seu usuário do github" />
                     <button>Entrar</button>
                 </form>
             </div>
