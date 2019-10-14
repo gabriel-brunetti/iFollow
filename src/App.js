@@ -1,17 +1,15 @@
 import React from 'react';
-import './styles.css';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Login from './paginas/Login';
+import Home from './paginas/Home';
 
 class App extends React.Component {
-  render(){
+  render() {
     return (
-      <div className="container">
-        <span className="logo" >Logo</span>
-        <h1>iFollow</h1>
-        <form>
-          <input type='text' placeholder="Digite seu usuário do github" />
-          <button>Entrar</button>
-        </form>
-      </div>
+      <BrowserRouter>
+        <Route path="/" exact component={Login} />
+        <Route path="/seguidores/:usuario" component={Home} />
+      </BrowserRouter>
     );
   }
 }
